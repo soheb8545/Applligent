@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Shopping Cart</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="css/style.css"
+      media="screen"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"
+    ></script>
+    <script type="text/javascript" src="js/jquery.store.js"></script>
+  </head>
+
+  <body>
+    <div id="site">
+      <header id="masthead">
+        <h1></h1>
+      </header>
+      <div id="content">
+        <h1>Your Shopping Cart</h1>
+        <form id="shopping-cart" action="checkout.ejs" method="post">
+          <table class="shopping-cart">
+            <thead>
+              <tr>
+				
+                <th scope="col">Item</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <h3>Hello Appllignet</h3>
+              </tr>
+            </thead>
+            <tbody>
+				<% for(var i = 0; i < cartData.items.length ; i++) { %>
+              <tr>
+                <td class="name"><%= cartData.items[i].name%></td>
+                <td class="quantity"><%= cartData.items[i].quantity%></td>
+                <td class="price"><%= cartData.items[i].price%></td>
+              </tr>
+			  <%}%>
+        <input type="hidden" name="token" id="token" class="token" value="<%= token%>" />
+
+            </tbody>
+	</table>
+
+          <p id="sub-total">
+            <strong>Sub Total</strong>: <span id="bill"><b><%= cartData.bill%></b></span>
+          </p>
+          <!-- <p><input type="submit" value="Go To payment" class="btn" /></p> -->
+
+        </form>
+      </div>
+    </div>
+
+    
+<div id="site">
+		 
+		 <form action="/order/checkout" method="post">
+		 	<h2>Your Details</h2>
+		 	
+		 	<fieldset id="fieldset-billing">
+		 		<legend>Billing</legend>
+         <br></br>
+
+		 		<div>
+		 			<label for="fullname">Full Name</label>
+		 			<input type="text" name="fullname" id="fullname" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+        <br></br>
+		 		<div>
+		 			<label for="email">Email</label>
+		 			<input type="text" name="email" id="email" data-type="expression" data-message="Not a valid email address" />
+		 		</div>
+         <br></br>
+
+		 		<div>
+					<label for="phone_number">Phone Number</label>
+					<input type="number" name="phone_number" id="phone_number" data-type="string" data-message="This field cannot be empty" />
+				</div>
+        <br></br>
+	
+				<div>
+					<label for="card_number">Card Number</label>
+					<input type="number" name="card_number" id="card_number" data-type="string" data-message="This field cannot be empty" />
+				</div>
+        <br></br>
+
+				
+				
+				<div>
+		 			<label for="expiry_month">Expiry Month</label>
+		 			<input type="number" name="expiry_month" id="expiry_month" data-type="string" data-message="This field cannot be empty" />
+				</div>
+        <br></br>
+
+        <div>
+          <label for="expiry_year">Expiry Year</label>
+		 			<input type="number" name="expiry_year" id="expiry_year" data-type="string" data-message="This field cannot be empty" />
+				</div>
+        <br></br>
+
+        <div>
+          <label for="cvv">cvv</label>
+		 			<input type="number" name="cvv" id="cvv" data-type="string" data-message="This field cannot be empty" />
+				</div>
+        <br></br>
+
+		 		<div>
+          <input type="hidden" name="token" id="token" class="token" value="<%= token%>" />
+		 			<input type="hidden" name="amount" id="amount" value="<%= cartData.bill%>" />
+		 			<input type="hidden" name="currency" id="currency" value="NGN" />
+		 			<input type="hidden" name="redirect_url" id="redirect_url" value="www.google.com" />
+		 			<input type="hidden" name="enckey" id="enckey" value="FLWSECK_TESTd5a09ae44230" />
+		 			<input type="hidden" name="tx_ref" id="tx_ref" value="MC-32444ee--4eerye4euee3rerds4423e43e" />
+		 		</div>
+		 		
+		 	</fieldset>
+		 	<p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
+		 
+		 </form>
+	</div>
+</div>
+
+    <footer id="site-info">Copyright &copy;</footer>
+  </body>
+</html>
